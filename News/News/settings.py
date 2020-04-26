@@ -25,7 +25,7 @@ SECRET_KEY = 'w2xd(bn-kaz*e@y3_^j7o-_bu&0pl@6vhz68be3^!8@cx(4u=g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aman609.pythonanywhere.com']
 
 
 # Application definition
