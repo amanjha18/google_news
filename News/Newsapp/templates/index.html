@@ -17,30 +17,41 @@
     </h1>
 
 </div>
-<!-- <a href="url">aman</a> -->
-<!-- <a href="/appname/detail/{{ job.id }}/">{{ job.name }}</a> -->
-<!-- <h3 style="color:Tomato;">Hello World</h3> -->
 
 
 <div class="container">
-    {% for new,des,img, pub in mylist %}
-        <div class="="contain">
+    {% for img,new,des,url, pub in mylist %}
+        
+        <div class="contain" style="border: 1px solid black">
+        <div class="" style="margin: 10px">
+            {% if img %}
+                <h4> image hai- {{ img }}</h4>
+            {% else %}
+                <img src="https://cdn.arstechnica.net/wp-content/uploads/2017/06/Google-News-760x380.jpg"> 
+            {% endif %}
+            <!-- <img src={{img}} alt="/image/img.jpg" > -->
+            
+            <h3>Headline</h3>
+            <b>{{new}}</b>
+            {{ value|linebreaks }}
 
-        <h3>news</h3>
-        {{new}}
-        {{ value|linebreaks }}
-        <h4>description</h4>
-        <p style ="color:brown;">{{des}}</p>
-        {{ value|linebreaks }}
-            <!-- {{des}} -->
-        <h5>link</h5>
-            <a href="{{img}}">{{ img }}</a>
+            <h4>Description</h4>
+            <b><p style ="color: green;">{{des}}</p></b>
             {{ value|linebreaks }}
-        <h5>published_at</h5>
-            {{pub}}
-            {{ value|linebreaks }}
+
+            <h5>More to know</h5>
+                <br><a href={{url}}>{{ url }}</a></br>
+                {{ value|linebreaks }}
+
+            <h5>Published_at</h5>
+                <strong>{{pub}}</strong>
+                {{ value|linebreaks }}
 
         </div>
+        
+
+        </div>
+        <br></br>
 
     {% endfor %}
 
