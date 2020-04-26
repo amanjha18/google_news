@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aljazera News</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="jumbotron" style="color:black">
+
+    <h1 style="color:black">
+        Latest News
+    <img src="https://victor-mochere.com/wp-content/uploads/2019/10/How-to-get-your-website-included-on-Google-News.jpg",width="100" height="100">
+    </h1>
+
+</div>
+<!-- <a href="url">aman</a> -->
+<!-- <a href="/appname/detail/{{ job.id }}/">{{ job.name }}</a> -->
+<!-- <h3 style="color:Tomato;">Hello World</h3> -->
+
+
+<div class="container">
+    {% for new,des,img, pub in mylist %}
+        <div class="="contain">
+
+        <h3>news</h3>
+        {{new}}
+        {{ value|linebreaks }}
+        <h4>description</h4>
+        <p style ="color:brown;">{{des}}</p>
+        {{ value|linebreaks }}
+            <!-- {{des}} -->
+        <h5>link</h5>
+            <a href="{{img}}">{{ img }}</a>
+            {{ value|linebreaks }}
+        <h5>published_at</h5>
+            {{pub}}
+            {{ value|linebreaks }}
+
+        </div>
+
+    {% endfor %}
+
+
+
+
+</div>
+
+</body>
+</html>
