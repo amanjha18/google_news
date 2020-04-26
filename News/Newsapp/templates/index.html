@@ -30,19 +30,19 @@
             {% endif %}
             <!-- <img src={{img}} alt="/image/img.jpg" > -->
             
-            <h3>Headline</h3>
-            <b>{{new}}</b>
+            <b><h3>Headline</h3></b>
+            <h3><b style = "color:brown;">{{new}}</b></h3>
             {{ value|linebreaks }}
 
-            <h4>Description</h4>
-            <b><p style ="color: green;">{{des}}</p></b>
+            <b><h4>Description</h4></b>
+            <b><h4 style ="color: green;">{{des}}</h4></b>
             {{ value|linebreaks }}
 
-            <h5>More to know</h5>
+            <b><h5>More to know</h5><b>
                 <br><a href={{url}}>{{ url }}</a></br>
                 {{ value|linebreaks }}
 
-            <h5>Published_at</h5>
+            <b><h5>Published_at</h5></b>
                 <strong>{{pub}}</strong>
                 {{ value|linebreaks }}
 
