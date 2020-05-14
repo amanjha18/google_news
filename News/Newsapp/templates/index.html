@@ -1,31 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- dropdown link -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<!-- dropdown -->
     <meta charset="UTF-8">
     <title>Google News</title>
+      <!-- add icon link -->
+        <link rel = "icon" href =  
+"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_News_icon.svg/1200px-Google_News_icon.svg.png" 
+        type = "image/x-icon"> 
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .footer {
+       position: fixed;
+       left: 0;
+       bottom: 0;
+       width: 100%;
+       background-color: black;
+       color: white;
+       text-align: right -2px;
+    }
+    .left{display:inline-block; float:left; text-align: left -2px;}
+    .right{display:inline-block; float:right}
+    .container { 
+        margin-top: 20px;
+        margin-bottom:10px;
+
+    }
+    .header {
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+.dropdown{
+    width: 50%;
+  float: left;
+  margin-bottom: 30px;
+}   
+
+.search{
+    /*margin-bottom: 5px;*/
+}
+.home{
+    background-color: #800000;
+  color: white;
+  height: 45px;
+  width: 90px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+}
+.about{
+    background-color: #663300;
+  color: white;
+  height: 45px;
+  width: 90px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+
+}
+
+</style>
 </head>
+
 <body>
 
+<div class="header">
+    <div class="home">
+        <a href="{% url 'home' %}" style="color: white">home</a>
+    </div>
+    <div class="about">
+        <a href="{% url 'about' %}" style="color: white">about</a>
+    </div>
+    <!-- dropdown -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        select category
+      </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
+            <a class="dropdown-item" href="{% url 'home' %}">home</a>
+            <a class="dropdown-item" href="{% url 'world' %}">world</a>
+            <a class="dropdown-item" href="{% url 'business' %}">business</a>
+            <a class="dropdown-item" href="{% url 'entertainment' %}">entertainment</a>
+            <a class="dropdown-item" href="{% url 'health' %}">health</a>
+            <a class="dropdown-item" href="{% url 'science' %}">science</a>
+            <a class="dropdown-item" href="{% url 'sports' %}">sports</a>
+            <a class="dropdown-item" href="{% url 'technology' %}">technology</a>
 
-<div class="jumbotron" style="color:black">
+        </div>
+    </div>
 
-    <h1 style="color:black">
-        Latest News
-    </h1>
+   
+    <div class="search">
+    <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </div>
 
 </div>
 
 
+
 <div class="container">
+    {% if api.totalResults == 0 %}
+        <h5 style="padding: 50px">No search Results returned for : ' {{keyword}} '</h5>
+   
+    {% elif keyword %}
+        <h5 style="padding-top:20px;padding-left: 10px;">Top search results returned for ' {{keyword}} ' : </h5>
+    {% endif %}
+    {% if KeyError %}
+        <h5 style="padding: 50px">No search Results:     please enter in search box </h5>
+    {% endif %}
     {% for img,new,des,url, pub in mylist %} 
         <div class="contain" style="border: 1px solid black">
         <div class="" style="margin: 10px" background-color; blue>
             {% if img %}
-                <!-- <img src="{{img}}" alt="", height="300px", width="500px"> -->
                 <a href={{url}}>
-                 <img alt="Qries" src="{{img}}"
+                 <img alt="image" src="{{img}}"
                  width="100%" height="auto">
                 </a>
             {% else %}
@@ -35,7 +146,7 @@
             
             <b><h3>Headline</h3></b>
             <h3><a href="{{url}}">{{new}}</a></h3>
-            <!-- <a href="{{url}}"></a><h3><b style = "color:brown;">{{new}}</b></h3> -->
+            
             {{ value|linebreaks }}
             
 
@@ -43,9 +154,6 @@
             <b><h5 style ="color: green;">{{des}}</h5></b>
             {{ value|linebreaks }}
 
-            <!-- <b><h5>More to know</h5><b>
-                <br><a href={{url}}>{{ url }}</a></br>
-                {{ value|linebreaks }} -->
 
             <b><h4>Published_at</h4></b>
                 <h5><strong>{{pub}}</strong></h5>
@@ -60,9 +168,29 @@
     {% endfor %}
 
 
+    <div class="footer">
 
+      
+        <!-- Grid column -->
+        <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Aman:
+    <a href="https://newsapi.org/s/google-news-api" target="blank"> Newsapi.org</a>
+    <div class="right">Get breaking news headlines</div>
+    <div class="left">
+        <p><a href="https://amanjha18.github.io/PortFolio/" target="blank">Contact</a> | <a href="https://www.linkedin.com/in/aman-jha-815532168/" target="blank">LinkedIn</a> | <a href="https://github.com/amanjha18" target="blank">Github</a></p> 
+    </div>
+    </div>
 
+    </div>
+
+    </div>
 </div>
 
 </body>
 </html>
+
+
+
+
+
+
