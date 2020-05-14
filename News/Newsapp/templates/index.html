@@ -20,6 +20,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+    @viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}
     .footer {
        position: fixed;
        left: 0;
@@ -53,7 +57,7 @@
 }   
 
 .search{
-    /*margin-bottom: 5px;*/
+    
 }
 .home{
     background-color: #800000;
@@ -63,6 +67,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  /*margin-right: 8px;*/
   
 }
 .about{
@@ -73,6 +78,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  /*margin-right: 5px;*/
   
 
 }
@@ -140,7 +146,7 @@
                  width="100%" height="auto">
                 </a>
             {% else %}
-                <img src="https://cdn.arstechnica.net/wp-content/uploads/2017/06/Google-News-760x380.jpg"> 
+                <img src="https://cdn.arstechnica.net/wp-content/uploads/2017/06/Google-News-760x380.jpg" width="100%" height="auto"> 
             {% endif %}
             <!-- <img src={{img}} alt="/image/img.jpg" > -->
             
