@@ -26,6 +26,7 @@ SECRET_KEY = 'w2xd(bn-kaz*e@y3_^j7o-_bu&0pl@6vhz68be3^!8@cx(4u=g'
 DEBUG = True
 
 ALLOWED_HOSTS = ['aman609.pythonanywhere.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -120,6 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #managing media
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = '/media/'
