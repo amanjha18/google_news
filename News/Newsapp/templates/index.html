@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- dropdown link -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-<!-- dropdown -->
     <meta charset="UTF-8">
-    <title>Google News</title>
-      <!-- add icon link -->
-        <link rel = "icon" href =  
-"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_News_icon.svg/1200px-Google_News_icon.svg.png" 
+    <title>MyNews</title>
+           <!-- add icon link -->
+    <link rel = "icon" href =  
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_News_icon.svg/1200px-Google_News_icon.svg.png" 
         type = "image/x-icon"> 
 
-
+    <!-- dropdown link -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- dropdown -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-    @viewport {
-  width: device-width ;
-  zoom: 1.0 ;
-}
+    
     .footer {
        position: fixed;
        left: 0;
@@ -35,11 +32,7 @@
     }
     .left{display:inline-block; float:left; text-align: left -2px;}
     .right{display:inline-block; float:right}
-    .container { 
-        margin-top: 20px;
-        margin-bottom:10px;
 
-    }
     .header {
   padding: 10px;
   margin-bottom: 10px;
@@ -79,9 +72,8 @@
   text-decoration: none;
   display: inline-block;
   /*margin-right: 5px;*/
-  
-
 }
+
 
 </style>
 </head>
@@ -126,71 +118,48 @@
 </div>
 
 
+{% if api.totalResults == 0 %}
+    <h5 style="padding: 50px">No search Results returned for : ' {{keyword}} '</h5>
 
-<div class="container">
-    {% if api.totalResults == 0 %}
-        <h5 style="padding: 50px">No search Results returned for : ' {{keyword}} '</h5>
-   
-    {% elif keyword %}
-        <h5 style="padding-top:20px;padding-left: 10px;">Top search results returned for ' {{keyword}} ' : </h5>
-    {% endif %}
-    {% if KeyError %}
-        <h5 style="padding: 50px">No search Results:     please enter in search box </h5>
-    {% endif %}
-    {% for img,new,des,url, pub in mylist %} 
-        <div class="contain" style="border: 1px solid black">
-        <div class="" style="margin: 10px" background-color; blue>
-            {% if img %}
-                <a href={{url}}>
-                 <img alt="image" src="{{img}}"
-                 width="100%" height="auto">
-                </a>
-            {% else %}
-                <img src="https://cdn.arstechnica.net/wp-content/uploads/2017/06/Google-News-760x380.jpg" width="100%" height="auto"> 
-            {% endif %}
-            <!-- <img src={{img}} alt="/image/img.jpg" > -->
-            
-            <b><h3>Headline</h3></b>
-            <h3><a href="{{url}}">{{new}}</a></h3>
-            
-            {{ value|linebreaks }}
-            
+{% elif keyword %}
+    <h5 style="padding-top:20px;padding-left: 10px;">Top search results returned for ' {{keyword}} ' : </h5>
+{% endif %}
+{% if KeyError %}
+    <h5 style="padding: 50px">No search Results:     please enter in search box </h5>
+{% endif %}
 
-            <b><h4>Description</h4></b>
-            <b><h5 style ="color: green;">{{des}}</h5></b>
-            {{ value|linebreaks }}
+{% for img,new,des,url, pub in mylist %} 
+     <!-- image -->
+    <div class="card-columns text-align center" style=" padding-top:20px; padding: 20px; padding-right: 10px; padding-left: 10px;   display: flex; align-items: center" >
 
-
-            <b><h4>Published_at</h4></b>
-                <h5><strong>{{pub}}</strong></h5>
-                {{ value|linebreaks }}
-
+    <div class="card text-center">
+        <a href="{{url}}" target="blank"><img src="{{ img }}" class="card-img-top" alt="image" style="width: 200px;"> </a>
+        <div class="card-body">
+            <h5 class="card-title"><a href="{{url}}">{{new}}</a></h5>
+            <p class="card-text">{{des}}</p>
+            <p class="card-text"><small class="text-muted">{{pub}}</small></p>
         </div>
-        
-
-        </div>
-        <br></br>
-
-    {% endfor %}
-
-
-    <div class="footer">
-
-      
-        <!-- Grid column -->
-        <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Aman:
-    <a href="https://newsapi.org/s/google-news-api" target="blank"> Newsapi.org</a>
-    <div class="right">Get breaking news headlines</div>
-    <div class="left">
-        <p><a href="https://amanjha18.github.io/PortFolio/" target="blank">Contact</a> | <a href="https://www.linkedin.com/in/aman-jha-815532168/" target="blank">LinkedIn</a> | <a href="https://github.com/amanjha18" target="blank">Github</a></p> 
-    </div>
-    </div>
 
     </div>
+ </div>
 
-    </div>
+{% endfor %}
+
+
+<div class="footer">
+
+<div class="footer-copyright text-center py-3">© 2020 Aman:
+<a href="https://newsapi.org/s/google-news-api" target="blank"> Newsapi.org</a>
+<div class="right">Get breaking news headlines</div>
+<div class="left">
+    <p><a href="https://amanjha18.github.io/PortFolio/" target="blank">Contact</a> | <a href="https://www.linkedin.com/in/aman-jha-815532168/" target="blank">LinkedIn</a> | <a href="https://github.com/amanjha18" target="blank">Github</a></p> 
 </div>
+</div>
+
+</div>
+
+</div>
+
 
 </body>
 </html>
