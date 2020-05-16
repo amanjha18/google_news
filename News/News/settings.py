@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w2xd(bn-kaz*e@y3_^j7o-_bu&0pl@6vhz68be3^!8@cx(4u=g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['aman609.pythonanywhere.com' , '127.0.0.1']
 # ALLOWED_HOSTS = []
@@ -121,4 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'https://aman609.pythonanywhere.com/static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'https://aman609.pythonanywhere.com/News/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

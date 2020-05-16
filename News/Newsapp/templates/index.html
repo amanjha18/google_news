@@ -1,171 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MyNews</title>
-           <!-- add icon link -->
-    <link rel = "icon" href =  
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_News_icon.svg/1200px-Google_News_icon.svg.png" 
-        type = "image/x-icon"> 
+{% extends 'basic.html' %}
+{% block content %}
+    {% if api.totalResults == 0 %}
+        <h5 style="padding: 50px">No search Results returned for : ' {{keyword}} '</h5>
+    {% elif keyword %}
+        <h5 style="padding-top:20px;padding-left: 10px;">Top search results returned for ' {{keyword}} ' : </h5>
+    {% endif %}
 
-    <!-- dropdown link -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- dropdown -->
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="card-columns" style="padding: 10px;padding-top: 20px">
 
-<style>
-    
-    .footer {
-       position: fixed;
-       left: 0;
-       bottom: 0;
-       width: 100%;
-       background-color: black;
-       color: white;
-       text-align: right -2px;
-    }
-    .left{display:inline-block; float:left; text-align: left -2px;}
-    .right{display:inline-block; float:right}
-
-    .header {
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  background: #1abc9c;
-  color: white;
-  font-size: 30px;
-  display: flex;
-  justify-content: center;
-}
-.dropdown{
-    width: 50%;
-  float: left;
-  margin-bottom: 30px;
-}   
-
-.search{
-    
-}
-.home{
-    background-color: #800000;
-  color: white;
-  height: 45px;
-  width: 90px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  /*margin-right: 8px;*/
-  
-}
-.about{
-    background-color: #663300;
-  color: white;
-  height: 45px;
-  width: 90px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  /*margin-right: 5px;*/
-}
-
-
-</style>
-</head>
-
-<body>
-
-<div class="header">
-    <div class="home">
-        <a href="{% url 'home' %}" style="color: white">home</a>
-    </div>
-    <div class="about">
-        <a href="{% url 'about' %}" style="color: white">about</a>
-    </div>
-    <!-- dropdown -->
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        select category
-      </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    
-            <a class="dropdown-item" href="{% url 'home' %}">home</a>
-            <a class="dropdown-item" href="{% url 'world' %}">world</a>
-            <a class="dropdown-item" href="{% url 'business' %}">business</a>
-            <a class="dropdown-item" href="{% url 'entertainment' %}">entertainment</a>
-            <a class="dropdown-item" href="{% url 'health' %}">health</a>
-            <a class="dropdown-item" href="{% url 'science' %}">science</a>
-            <a class="dropdown-item" href="{% url 'sports' %}">sports</a>
-            <a class="dropdown-item" href="{% url 'technology' %}">technology</a>
-
-        </div>
-    </div>
-
-   
-    <div class="search">
-    <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="POST">
-        {% csrf_token %}
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    </div>
-
-</div>
-
-
-{% if api.totalResults == 0 %}
-    <h5 style="padding: 50px">No search Results returned for : ' {{keyword}} '</h5>
-
-{% elif keyword %}
-    <h5 style="padding-top:20px;padding-left: 10px;">Top search results returned for ' {{keyword}} ' : </h5>
-{% endif %}
-{% if KeyError %}
-    <h5 style="padding: 50px">No search Results:     please enter in search box </h5>
-{% endif %}
-
-{% for img,new,des,url, pub in mylist %} 
-     <!-- image -->
-    <div class="card-columns text-align center" style=" padding-top:20px; padding: 20px; padding-right: 10px; padding-left: 10px;   display: flex; align-items: center" >
-
-    <div class="card text-center">
-        <a href="{{url}}" target="blank"><img src="{{ img }}" class="card-img-top" alt="image" style="width: 200px; padding-top: 10px;"> </a>
+    {% for img,new,des,url, pub in mylist %} 
+      <div class="card">
+        <a href="{{ url }}" target="_blank"><img src="{{ img }}" class="card-img-top" alt="no-image">
         <div class="card-body">
             <h5 class="card-title"><a href="{{url}}">{{new}}</a></h5>
             <p class="card-text">{{des}}</p>
             <p class="card-text"><small class="text-muted">{{pub}}</small></p>
         </div>
-
+      </div>
+    {% endfor %}
     </div>
- </div>
+{% endblock %}
+        
 
-{% endfor %}
-
-
-<div class="footer">
-
-<div class="footer-copyright text-center py-3">© 2020 Aman:
-<a href="https://newsapi.org/s/google-news-api" target="blank"> Newsapi.org</a>
-<div class="right">Get breaking news headlines</div>
-<div class="left">
-    <p><a href="https://amanjha18.github.io/PortFolio/" target="blank">Contact</a> | <a href="https://www.linkedin.com/in/aman-jha-815532168/" target="blank">LinkedIn</a> | <a href="https://github.com/amanjha18" target="blank">Github</a></p> 
-</div>
-</div>
-
-</div>
-
-</div>
-
-
-</body>
-</html>
-
-
-
-
-
+   
 
