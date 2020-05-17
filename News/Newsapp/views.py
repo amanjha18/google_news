@@ -22,7 +22,11 @@ def home(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 	
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -45,7 +49,11 @@ def world(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 	
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -69,7 +77,11 @@ def business(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -92,7 +104,11 @@ def entertainment(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -115,7 +131,11 @@ def health(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -138,7 +158,11 @@ def science(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -162,7 +186,11 @@ def sports(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -185,7 +213,11 @@ def technology(request):
 		news.append(myarticles['title'])
 		desc.append(myarticles['description'])
 		url.append(myarticles['url'])
-		published.append(myarticles['publishedAt'])
+		timestamp = myarticles['publishedAt']
+		date = timestamp[:10]
+		time = timestamp[11:19]
+		date_time =date + " - "+ time
+		published.append(date_time)
 
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
@@ -219,7 +251,11 @@ def search(request):
 			news.append(myarticles['title'])
 			desc.append(myarticles['description'])
 			url.append(myarticles['url'])
-			published.append(myarticles['publishedAt'])
+			timestamp = myarticles['publishedAt']
+			date = timestamp[:10]
+			time = timestamp[11:19]
+			date_time =date + " - "+ time
+			published.append(date_time)
 	except IndexError:
  		pass
  	except KeyError:
