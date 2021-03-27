@@ -258,8 +258,7 @@ def search(request):
 			published.append(date_time)
 	except IndexError:
  		pass
- 	except KeyError:
- 		pass
+ 	
 	mylist = zip(img, news,  desc, url, published)
 	# print(mylist)
 	return render(request, 'index.html', {'mylist':mylist, 'keyword': keyword})
