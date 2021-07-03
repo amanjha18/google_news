@@ -15,3 +15,4 @@ So sit back and enjoy browsing through myNews-webApp
 # Installation process:
 1 git clone repo
 2 Run command - python manage.py runserver
+aijakhan
